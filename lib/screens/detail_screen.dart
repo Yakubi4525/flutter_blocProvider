@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rick_and_morty_bloc_provider/cubits/navigator_cubt.dart';
 import 'package:rick_and_morty_bloc_provider/models/person.dart';
 import 'package:rick_and_morty_bloc_provider/styles/theme.dart';
 import 'package:rick_and_morty_bloc_provider/widget/avatar_widget.dart';
 import 'package:rick_and_morty_bloc_provider/widget/green_shape_widget.dart';
 import 'package:rick_and_morty_bloc_provider/widget/grey_line_widget.dart';
-
 
 class DetailScreen extends StatefulWidget {
   final PersonModel model;
@@ -33,7 +34,7 @@ class _DetailScreenState extends State<DetailScreen> {
               color: kIconGreyColor,
             ),
             onPressed: () {
-              Navigator.pop(context);
+              BlocProvider.of<NavigatorCubit>(context).backToMainScreen();
             },
           ),
         ),
@@ -46,7 +47,7 @@ class _DetailScreenState extends State<DetailScreen> {
       ),
       body: WillPopScope(
         onWillPop: () {
-          Navigator.pop(context);
+          BlocProvider.of<NavigatorCubit>(context).backToMainScreen();
           return null;
         },
         child: SingleChildScrollView(
@@ -61,7 +62,10 @@ class _DetailScreenState extends State<DetailScreen> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    avatarWidget(url: model.image, radius: _size.width*0.25, heroIndex: model.id),
+                    avatarWidget(
+                        url: model.image,
+                        radius: _size.width * 0.25,
+                        heroIndex: model.id),
                     SizedBox(
                       height: 20,
                     ),
@@ -77,7 +81,7 @@ class _DetailScreenState extends State<DetailScreen> {
                   ],
                 ),
                 SizedBox(
-                  height: _size.height*0.04,
+                  height: _size.height * 0.04,
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

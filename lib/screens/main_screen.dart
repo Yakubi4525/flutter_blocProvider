@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty_bloc_provider/blocs/get_list_persons_blocs.dart';
 import 'package:rick_and_morty_bloc_provider/blocs/person_bloc_models.dart';
+import 'package:rick_and_morty_bloc_provider/cubits/navigator_cubt.dart';
 import 'package:rick_and_morty_bloc_provider/models/person.dart';
 import 'package:rick_and_morty_bloc_provider/models/person_response.dart';
-import 'package:rick_and_morty_bloc_provider/screens/detail_screen.dart';
 import 'package:rick_and_morty_bloc_provider/styles/theme.dart';
 import 'package:rick_and_morty_bloc_provider/widget/avatar_widget.dart';
 import 'package:rick_and_morty_bloc_provider/widget/green_shape_widget.dart';
@@ -117,12 +117,7 @@ class _MainScreenState extends State<MainScreen> {
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => DetailScreen(
-                              model: persons[index],
-                            )));
+                BlocProvider.of<NavigatorCubit>(context).showDetailPersons(persons[index]);
               },
               child: Padding(
                 padding: const EdgeInsets.only(left: 25, right: 25, bottom: 10),

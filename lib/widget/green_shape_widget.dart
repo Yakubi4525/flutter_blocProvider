@@ -20,7 +20,7 @@ Widget greenshapeWidget({String status, String species, TextStyle textStyle}) {
         width: 6,
       ),
       Text(
-        '${status} - ${species}',
+        '$status - $species',
         overflow: TextOverflow.ellipsis,
         style: textStyle,
       ),

@@ -12,8 +12,8 @@ class DataService {
         return PersonResponseModel.fromApi(response.data);
       }
       throw Exception("Ошибка запроса");
-    } catch (errorValue) {
-      print('error on service: ${errorValue}');
+    } catch (error) {
+      print(error);
       rethrow;
     }
   }
